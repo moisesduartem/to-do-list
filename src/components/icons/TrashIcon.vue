@@ -9,4 +9,3 @@
 		name: 'TrashIcon',
 	}
 </script>
-
