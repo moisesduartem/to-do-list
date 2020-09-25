@@ -6,24 +6,22 @@
         <a href="http://github.com/moisesduartem/to-do-list">github.com/moisesduartem</a>
       </small>
       <hr>
-      <div id="add-task" class="list-group-item bg-light">
-        <input type="text" class="form-control" placeholder="Nome do compromisso" v-model="newTitle">
-        <input type="datetime-local" class="form-control" v-model="newDate">
-       <input v-on:click="addTask" class="btn btn-block btn-info shadow-sm" type="button" value="Adicionar">
+      <div class="list-group-item bg-light p-3">
+        <input type="text" class="form-control mb-2" placeholder="Nome do compromisso" v-model="newTitle">
+        <input type="datetime-local" class="form-control mb-2" v-model="newDate">
+        <input v-on:click="addTask" class="btn btn-block btn-info shadow-sm" type="button" value="Adicionar">
         <input v-on:click="clearTaskList" class="btn btn-block btn-success shadow-sm" type="button" value="Limpar">
       </div>
-      <div class="">
-        <div class="task list-group-item text-left d-flex align-items-center  justify-content-between" v-for="(task, i) in taskList" v-on:click="concludeTask(i)" :key="task.id">
-          <input type="checkbox" v-model="taskList[i].concluded" :id="i">
-          <span class="task-title" v-if="taskList[i].concluded"><strike>{{task.title}}</strike></span>
-          <span class="task-title" v-else="">{{task.title}}</span>
-          <small>
-            {{ new Date(task.date).toLocaleString('pt-br') }}
-          </small>
-          <button v-on:click="removeTask(i)" class="btn btn-danger shadow-sm rounded-circle">
-            <TrashIcon />
-          </button>
-        </div>
+      <div class="task list-group-item text-left d-flex align-items-center  justify-content-between" v-for="(task, i) in taskList" v-on:click="concludeTask(i)" :key="task.id">
+        <input type="checkbox" v-model="taskList[i].concluded" :id="i">
+        <span class="task-title" v-if="taskList[i].concluded"><strike>{{task.title}}</strike></span>
+        <span class="task-title" v-else="">{{task.title}}</span>
+        <small>
+          {{ new Date(task.date).toLocaleString('pt-br') }}
+        </small>
+        <button v-on:click="removeTask(i)" class="btn btn-danger shadow-sm rounded-circle">
+          <TrashIcon />
+        </button>
       </div>
     </div>
   </div>
@@ -76,13 +74,6 @@
 </script>
 
 <style scoped="">
-input {
-  margin-top: 8px;
-}
-
-#add-task button {
-  font-weight: 700;
-}
 
 .task {
   transition: all .3s;
