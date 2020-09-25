@@ -5,7 +5,7 @@
       <small>
         <a href="http://github.com/moisesduartem/to-do-list">github.com/moisesduartem</a>
       </small>
-      <hr>
+      <hr class="mx-3 mb-3">
       <div class="list-group-item bg-light p-3">
         <input type="text" class="form-control mb-2" placeholder="Nome do compromisso" v-model="newTitle">
         <input type="datetime-local" class="form-control mb-2" v-model="newDate">
