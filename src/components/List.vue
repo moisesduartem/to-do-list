@@ -7,9 +7,10 @@
       </small>
       <hr>
       <div id="add-task" class="list-group-item bg-light">
-        <input type="text" class="form-control" placeholder="Adicionar Tarefa" v-model="newTitle">
-        <input type="datetime-local" class="form-control" placeholder="Adicionar Tarefa" v-model="newDate">
-        <button v-on:click="addTask" class="btn btn-info shadow-sm">+</button>
+        <input type="text" class="form-control" placeholder="Nome do compromisso" v-model="newTitle">
+        <input type="datetime-local" class="form-control" v-model="newDate">
+       <input v-on:click="addTask" class="btn btn-block btn-info shadow-sm" type="button" value="Adicionar">
+        <input v-on:click="clearTaskList" class="btn btn-block btn-success shadow-sm" type="button" value="Limpar">
       </div>
       <div class="">
         <div class="task list-group-item text-left d-flex align-items-center  justify-content-between" v-for="(task, i) in taskList" v-on:click="concludeTask(i)" :key="task.id">
@@ -76,11 +77,7 @@
 
 <style scoped="">
 input {
-  margin-right: 5px;
-}
-
-#add-task {
-  display: flex;
+  margin-top: 8px;
 }
 
 #add-task button {
