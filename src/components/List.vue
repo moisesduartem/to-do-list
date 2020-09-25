@@ -4,7 +4,7 @@
       <div id="add-task" class="list-group-item bg-light">
         <input type="text" class="form-control" placeholder="Adicionar Tarefa" v-model="title">
         <input type="datetime-local" class="form-control" placeholder="Adicionar Tarefa" v-model="date">
-        <Button>+</Button>
+        <button class="btn btn-info shadow-sm">+</button>
       </div>
       <div class="">
         <div class="list-group-item bg-light text-left d-flex align-items-center  justify-content-between" v-for="(task) in taskList" v-bind:key="task.id">
@@ -12,9 +12,9 @@
           <small>
             {{ new Date(task.date).toLocaleString('pt-br') }}
           </small>
-          <Button color='danger' circle=true>
-            <TrashIcon />
-          </Button>
+            <button class="btn btn-danger shadow-sm rounded-circle">
+              <TrashIcon />
+            </button>
         </div>
       </div>
     </div>
@@ -22,13 +22,13 @@
 </template>
 
 <script>
-  import Button from './Button';
   import TrashIcon from './icons/TrashIcon';
   export default {
     data() {
       return {
         name: 'List',
         title: '',
+        now: new Date().toLocaleString('pt-br'),
         date: '',
         taskList: [
         {title: 'Lavar a louça', date: '2020-06-25 13:00:00'}, 
@@ -37,13 +37,9 @@
       }
     },
     components: {
-      Button,
       TrashIcon
     },
     methods: {
-      addTask() {
-        this.taskList.push()
-      }
     }
   }
 </script>
