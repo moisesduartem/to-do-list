@@ -1,16 +1,21 @@
 <template>
   <div>
     <div class="container rounded p-0 shadow-sm">
-    <h4 class="">Lista de Tarefas - {{now.split(' ')[0]}}</h4>
-    <hr>
+      <h4 class="text-muted">Lista de Tarefas - {{now.split(' ')[0]}}</h4>
+      <small>
+        <a href="http://github.com/moisesduartem/to-do-list">github.com/moisesduartem</a>
+      </small>
+      <hr>
       <div id="add-task" class="list-group-item bg-light">
         <input type="text" class="form-control" placeholder="Adicionar Tarefa" v-model="newTitle">
-        <input type="datetime-local" class="form-control" placeholder="Adicionar Tarefa" v-model="newDate" value="2020-12-25T08:00">
+        <input type="datetime-local" class="form-control" placeholder="Adicionar Tarefa" v-model="newDate">
         <button v-on:click="addTask" class="btn btn-info shadow-sm">+</button>
       </div>
       <div class="">
-        <div class="task list-group-item text-left d-flex align-items-center  justify-content-between" v-for="(task, i) in taskList" v-on:click="concludeTask(i)" v-bind:key="task.id">
-          <span class="task-title">{{task.title}}</span>
+        <div class="task list-group-item text-left d-flex align-items-center  justify-content-between" v-for="(task, i) in taskList" v-on:click="concludeTask(i)" :key="task.id">
+          <input type="checkbox" v-model="taskList[i].concluded" :id="i">
+          <span class="task-title" v-if="taskList[i].concluded"><strike>{{task.title}}</strike></span>
+          <span class="task-title" v-else="">{{task.title}}</span>
           <small>
             {{ new Date(task.date).toLocaleString('pt-br') }}
           </small>
@@ -31,17 +36,14 @@
         newTitle: '',
         newDate: '',
         name: 'List',
-        taskList: [
-        {title: 'Lavar a louça', date: '2020-06-25 13:00:00', concluded: false}, 
-        {title: 'Varrer a casa', date: '2020-06-20 08:00:00', concluded: false},
-        ]      
+        taskList: []      
       }
     },
     computed: {
-        now() {
-          const date = new Date();
-          return `${date.toLocaleString('pt-br')}`
-        }
+      now() {
+        const date = new Date();
+        return `${date.toLocaleString('pt-br')}`
+      }
     },
     components: {
       TrashIcon
@@ -61,13 +63,18 @@
         this.taskList.splice(i, 1);
       },
       concludeTask(i) {
-        this.taskList[i].concluded = !this.taskList[i].concluded;
+        if ( this.taskList[i] ) {
+          this.taskList[i].concluded = !this.taskList[i].concluded;
+        }
+      },
+      clearTaskList() {
+        this.taskList = [];
       }
     }
   }
 </script>
 
-<style>
+<style scoped="">
 input {
   margin-right: 5px;
 }
@@ -88,7 +95,7 @@ input {
   font-size: 14px;
 }
 
-.task:hover {
+.task concluded :hover {
   background-color: #f5fff5;
 }
 
