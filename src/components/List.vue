@@ -2,7 +2,8 @@
   <div>
     <div class="container rounded p-0 shadow-sm">
       <div id="add-task" class="list-group-item bg-light">
-        <input type="text" class="form-control" placeholder="Adicionar Tarefa">
+        <input type="text" class="form-control" placeholder="Adicionar Tarefa" v-model="title">
+        <input type="datetime-local" class="form-control" placeholder="Adicionar Tarefa" v-model="date">
         <Button>+</Button>
       </div>
       <div class="">
@@ -27,6 +28,8 @@
     data() {
       return {
         name: 'List',
+        title: '',
+        date: '',
         taskList: [
         {title: 'Lavar a louça', date: '2020-06-25 13:00:00'}, 
         {title: 'Varrer a casa', date: '2020-06-20 08:00:00'}
@@ -36,17 +39,25 @@
     components: {
       Button,
       TrashIcon
+    },
+    methods: {
+      addTask() {
+        this.taskList.push()
+      }
     }
   }
 </script>
 
 <style scoped>
+input {
+  margin-right: 5px;
+}
+
 #add-task {
   display: flex;
 }
 
 #add-task button {
-  margin-left: 5px;
   font-weight: 700;
 }
 
