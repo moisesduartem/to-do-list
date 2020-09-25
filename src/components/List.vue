@@ -75,6 +75,10 @@
 
 <style scoped="">
 
+.container {
+  max-width: 420px;
+}
+
 .task {
   transition: all .3s;
 }
